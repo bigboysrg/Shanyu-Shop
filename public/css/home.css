@@ -1,0 +1,309 @@
+/* --- Root Variables for Colors --- */
+:root {
+    --dark-green: #003d15;
+    --mid-green: #005a1e;
+    --tan-bg: #d9b382;
+    --deep-red: #8b1a1a;
+    --white: #ffffff;
+    --gold: #ffcc00;
+}
+
+/* --- Global Styles --- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+    background-color: var(--tan-bg);
+    /* This creates the subtle wave pattern background */
+    background-image: radial-gradient(circle at 20% 50%, rgba(0,0,0,0.05) 0%, transparent 50%);
+    overflow-x: hidden;
+}
+
+h1, .shop-text, .logo-text, .nav-links a, .btn-signin, .price, .product-tag, .checkout-box h3, .stats h2 {
+    font-family: 'Pacifico', cursive;
+}
+
+/* --- Header --- */
+header {
+    background-color: var(--dark-green);
+    color: white;
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-circle {
+    background: white;
+    color: var(--deep-red);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 30px;
+    font-size: 1.2rem;
+}
+
+/* --- Hero Section --- */
+.hero {
+    display: flex;
+    padding: 60px 80px;
+    position: relative;
+    min-height: 500px;
+    justify-content: center;
+}
+
+.hero-left {
+    flex: 1.2;
+    z-index: 2;
+}
+
+.badge-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.number-badge {
+    background: var(--dark-green);
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border: 2px solid white;
+    font-size: 1.5rem;
+}
+
+.platform-tag {
+    background: var(--dark-green);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border: 1px solid white;
+}
+
+.hero-left h1 {
+    font-size: 5rem;
+    color: white;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    line-height: 1;
+}
+
+.shop-text {
+    font-size: 4.5rem;
+    color: white;
+    margin-top: -10px;
+}
+
+.btn-signin {
+    background: var(--deep-red);
+    color: white;
+    border: none;
+    padding: 8px 50px;
+    border-radius: 30px;
+    font-size: 1.6rem;
+    margin-top: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+}
+
+.btn-signin:hover {
+    transform: scale(1.05);
+}
+
+/* --- Right Side Assets --- */
+.hero-right {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.product-card {
+    background: var(--dark-green);
+    width: 260px;
+    height: 350px;
+    border-radius: 25px;
+    position: absolute;
+    /* Change these values to pull it closer to the model */
+    left: 150px; 
+    top: 50px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 15px 15px 30px rgba(0,0,0,0.2);
+    z-index: 5; /* Higher than the model image */
+}
+
+.product-tag {
+    background: var(--deep-red);
+    color: white;
+    padding: 5px 20px;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    margin-top: -25px;
+    white-space: nowrap;
+}
+
+.product-img {
+    width: 90%;
+    margin-top: 30px;
+    object-fit: contain;
+}
+
+.price {
+    color: var(--gold);
+    font-size: 1.8rem;
+    margin-top: auto;
+    margin-bottom: 10px;
+}
+
+.model-img {
+    width: 380px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 50px;
+    box-shadow: 20px 20px 40px rgba(0,0,0,0.2);
+}
+
+/* --- Review Bubble --- */
+.review-bubble {
+    background: var(--deep-red);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    position: absolute;
+    /* Adjust these to match the screenshot */
+    bottom: -10px;
+    left: 50px; 
+    width: 380px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 6; /* Top layer */
+    box-shadow: 10px 10px 25px rgba(0,0,0,0.3);
+}
+
+.review-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid white;
+    object-fit: cover;
+}
+
+/* --- Footer/Bottom Bar --- */
+.bottom-bar {
+    background: var(--dark-green);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 80px;
+    margin-top: 80px;
+    position: relative;
+}
+
+.checkout-box {
+    background: var(--deep-red);
+    border: 2px solid #000;
+    border-radius: 20px;
+    padding: 25px;
+    width: 280px;
+    position: absolute;
+    top: -120px; /* This makes it overlap the tan and green sections */
+    left: 80px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.checkout-box h3 {
+    margin: 0;
+    font-size: 1.8rem;
+    line-height: 1.2;
+}
+
+.checkout-box p {
+    font-size: 0.9rem;
+    border-top: 1px dashed rgba(255,255,255,0.5);
+    padding-top: 15px;
+    margin-top: 15px;
+    line-height: 1.4;
+}
+
+.learn-more {
+    background: var(--deep-red);
+    color: white;
+    border: 2px solid white;
+    border-radius: 25px;
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.learn-more .arrow {
+    background: white;
+    color: var(--deep-red);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.stats {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: 350px; /* Offset to clear the checkout box */
+}
+
+.stats h2 {
+    font-size: 5rem;
+    margin: 0;
+    color: white;
+}
+
+.stats-label {
+    font-size: 1.2rem;
+    line-height: 1.1;
+    font-weight: bold;
+}
+
+.about-text {
+    max-width: 350px;
+    font-size: 1.1rem;
+    border-left: 3px solid white;
+    padding-left: 30px;
+    line-height: 1.4;
+}
