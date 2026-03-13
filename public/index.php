@@ -1,5 +1,5 @@
 <?php
-
+define('ENVIRONMENT', 'development');
 use CodeIgniter\Boot;
 use Config\Paths;
 
