@@ -1,53 +1,111 @@
 body {
-    background-color: #f0f0f0;
+    background-color: #8b1a1a; /* Match the login page red */
     margin: 0;
-    font-family: sans-serif;
+    overflow-x: hidden;
+}
+
+.register-wrapper {
+    min-height: 80vh;
     display: flex;
-    flex-direction: column;
-    align-items: center; /* Centers everything horizontally */
-    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 50px 0;
 }
 
-/* Registration box styling */
+/* Artistic circle on the left side to balance the Login page's right circle */
+.bg-decoration {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background-color: #003d15;
+    border-radius: 50%;
+    left: -150px;
+    top: 10%;
+    opacity: 0.8;
+    z-index: 1;
+}
+
+/* The Main Card */
 .register-card {
-    background: #e0e0e0;
-    padding: 40px;
-    border-radius: 20px;
-    width: 350px;
-    text-align: center;
-    margin-top: 100px; /* Ensures space below the fixed topbar */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #d9b382; /* Brand Tan */
+    padding: 50px 70px;
+    width: 420px;
+    border-radius: 5px; /* Keeping the sharp-but-soft look */
+    position: relative;
+    z-index: 2;
+    box-shadow: 25px 25px 0px rgba(0,0,0,0.15); /* Hard shadow style */
 }
 
-.register-card h1 {
-    margin-top: 0;
-    font-size: 24px;
-    color: #333;
-}
-
-/* Form input styling */
-input {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box; /* Keeps padding inside the defined width */
-}
-
-/* Button styling */
-button {
-    width: 100%;
-    padding: 12px;
-    background: #4a4a4a;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.subtitle {
+    color: #003d15;
     font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.main-title {
+    font-family: 'Pacifico', cursive;
+    color: #003d15;
+    font-size: 4rem;
+    margin: 0 0 40px 0;
+    line-height: 1;
+}
+
+/* Input Styling */
+.input-row {
+    margin-bottom: 20px;
+}
+
+.input-row input {
+    width: 100%;
+    background-color: #003d15; /* Brand Dark Green */
+    border: none;
+    padding: 18px 25px;
+    color: #ffffff;
+    font-size: 1rem;
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.input-row input::placeholder {
+    color: rgba(255,255,255,0.6);
+}
+
+/* Button Styling */
+.btn-register {
+    width: 100%;
+    background-color: #003d15;
+    color: #ffffff;
+    border: 2px solid #003d15;
+    padding: 15px;
+    font-size: 1.4rem;
+    font-family: 'Pacifico', cursive;
+    cursor: pointer;
+    transition: all 0.3s;
     margin-top: 10px;
 }
 
-button:hover {
-    background-color: #333;
+.btn-register:hover {
+    background-color: transparent;
+    color: #003d15;
+}
+
+.login-prompt {
+    text-align: center;
+    margin-top: 25px;
+    color: #003d15;
+    font-size: 0.9rem;
+}
+
+.login-prompt a {
+    color: #8b1a1a;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.login-prompt a:hover {
+    text-decoration: underline;
 }

@@ -11,10 +11,14 @@
 
     <div class="hero-right">
         <div class="product-card">
-            <div class="product-tag">Tangzu Wan'er 2 ➔</div>
-            <img src="<?= base_url('images/Waner2Jade.png') ?>" alt="Waner2Jade" class="product-img">
-            <div class="price"><?= $productPrice ?></div>
-        </div>
+   
+    <a href="<?= site_url('products') ?>" class="product-tag" style="text-decoration: none;">
+        Products ➔
+    </a>
+    
+    <img src="<?= base_url('images/Waner2Jade.png') ?>" alt="WanerJade" class="product-img">
+    <div class="price"><?= $productPrice ?></div>
+</div>
         
         <img src="<?= base_url('images/Waner2JadeModel.jpg') ?>" alt="Waner2Jade Model" class="model-img">
 

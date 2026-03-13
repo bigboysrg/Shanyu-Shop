@@ -1,26 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-    <link rel="stylesheet" href="<?= base_url('css/topbar.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('css/register.css') ?>">
-</head>
-<body>
+<link rel="stylesheet" href="<?= base_url('css/register.css') ?>">
 
-    <?= view('topbar') ?>
+<div class="register-wrapper">
+    <!-- Decorative background element -->
+    <div class="bg-decoration"></div>
 
-    <div class="register-container">
-        <div class="register-card">
-            <h1>Register</h1>
-            <?= form_open('register/store') ?>
-                <input type="text" name="name" placeholder="Username" required>
-                <input type="email" name="email" placeholder="Email" required>
+    <div class="register-card">
+        <p class="subtitle">Start your journey</p>
+        <h1 class="main-title">Join now!</h1>
+
+        <form action="<?= site_url('register/store') ?>" method="post">
+            <div class="input-row">
+                <input type="text" name="username" placeholder="Username" required>
+            </div>
+
+            <div class="input-row">
+                <input type="email" name="email" placeholder="Email address" required>
+            </div>
+
+            <div class="input-row">
                 <input type="password" name="password" placeholder="Password" required>
-                <button type="submit">Sign Up</button>
-            <?= form_close() ?>
-        </div>
-    </div>
+            </div>
 
-</body>
-</html>
+            <button type="submit" class="btn-register">Create Account</button>
+        </form>
+
+        <p class="login-prompt">
+            Already have an account? <a href="<?= site_url('login') ?>">Sign in</a>
+        </p>
+    </div>
+</div>

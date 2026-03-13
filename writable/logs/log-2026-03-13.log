@@ -203,3 +203,33 @@ DEBUG - 2026-03-13 15:41:07 --> Session: Class initialized using 'CodeIgniter\Se
 =======
 DEBUG - 2026-03-13 15:41:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 >>>>>>> Stashed changes
+CRITICAL - 2026-03-13 16:59:06 --> ErrorException: Undefined variable $userCount
+[Method: GET, Route: login]
+in APPPATH\Views\templates\footer.php on line 11.
+ 1 APPPATH\Views\templates\footer.php(11): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $userCount', 'D:\\xampp\\htdocs\\Shanyu-Shop\\app\\Views\\templates\\footer.php', 11)
+ 2 SYSTEMPATH\View\View.php(238): include('D:\\xampp\\htdocs\\Shanyu-Shop\\app\\Views\\templates\\footer.php')
+ 3 SYSTEMPATH\View\View.php(241): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1250): CodeIgniter\View\View->render('templates/footer', [], true)
+ 5 APPPATH\Controllers\Login.php(18): view('templates/footer')
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Login->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('D:\\xampp\\htdocs\\Shanyu-Shop\\public\\index.php')
+CRITICAL - 2026-03-13 16:59:27 --> ErrorException: Undefined variable $userCount
+[Method: GET, Route: login]
+in APPPATH\Views\templates\footer.php on line 11.
+ 1 APPPATH\Views\templates\footer.php(11): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $userCount', 'D:\\xampp\\htdocs\\Shanyu-Shop\\app\\Views\\templates\\footer.php', 11)
+ 2 SYSTEMPATH\View\View.php(238): include('D:\\xampp\\htdocs\\Shanyu-Shop\\app\\Views\\templates\\footer.php')
+ 3 SYSTEMPATH\View\View.php(241): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1250): CodeIgniter\View\View->render('templates/footer', [], true)
+ 5 APPPATH\Controllers\Login.php(18): view('templates/footer')
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Login->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Login))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('D:\\xampp\\htdocs\\Shanyu-Shop\\public\\index.php')
