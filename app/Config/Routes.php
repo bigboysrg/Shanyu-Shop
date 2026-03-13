@@ -13,3 +13,4 @@ $routes->get('dashboard', 'UserDashboard::index');
 $routes->post('dashboard/update', 'UserDashboard::updateProfile');
 $routes->get('dashboard/delete', 'UserDashboard::deleteAccount');
 $routes->get('home', 'Home::index');
+$routes->get('cart', 'Cart::index');
