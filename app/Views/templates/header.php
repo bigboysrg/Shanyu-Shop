@@ -16,7 +16,7 @@
             <span class="logo-text"><?= $brandName ?></span>
         </div>
         <nav>
-            <a href="#">Home</a>
+            <a href="<?= site_url('home') ?>">Home</a> 
             <a href="#">About Us</a>
             <a href="#">Contact</a>
         </nav>
