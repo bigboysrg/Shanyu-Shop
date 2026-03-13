@@ -1,0 +1,41 @@
+/* public/css/topbar.css */
+.top-nav {
+    background-color: #a8a8a8;
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding doesn't break layout */
+}
+
+.nav-left { display: flex; align-items: center; gap: 15px; }
+.nav-right { display: flex; gap: 30px; }
+
+/* Circle Avatars */
+.avatar-large { 
+    width: 50px; height: 50px; 
+    border-radius: 50%; 
+    background-color: #d1d1d1; 
+    border: 2px solid white; 
+}
+.avatar-small { 
+    width: 25px; height: 25px; 
+    border-radius: 50%; 
+    background-color: #bbbbbb; 
+    border: 2px solid white; 
+    margin-left: -35px; /* Overlap effect */
+}
+
+/* Text and Links */
+.user-info { display: flex; flex-direction: column; color: #333; }
+.name { font-weight: bold; font-size: 1.1em; }
+.sub-text { font-size: 0.8em; }
+
+.nav-right a { 
+    text-decoration: none; 
+    color: #333; 
+    font-weight: 500; 
+    padding-bottom: 5px; 
+}
+.nav-right a.active { border-bottom: 2px solid #333; }

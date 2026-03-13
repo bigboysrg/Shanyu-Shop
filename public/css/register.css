@@ -1,58 +1,53 @@
-/* public/css/register.css */
-
-/* Full-page background */
 body {
+    background-color: #f0f0f0;
     margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: url('../images/great_wall.jpg') no-repeat center center fixed;
-    background-size: cover;
-    height: 100vh;
+    font-family: sans-serif;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    align-items: center; /* Centers everything horizontally */
+    min-height: 100vh;
 }
 
-/* Registration Card */
+/* Registration box styling */
 .register-card {
-    background-color: rgba(211, 211, 211, 0.9); /* Gray with slight transparency */
-    padding: 50px;
-    border-radius: 50px 0 0 50px; /* Rounded left side, flat right side */
+    background: #e0e0e0;
+    padding: 40px;
+    border-radius: 20px;
     width: 350px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
     text-align: center;
+    margin-top: 100px; /* Ensures space below the fixed topbar */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .register-card h1 {
-    margin-bottom: 25px;
+    margin-top: 0;
+    font-size: 24px;
     color: #333;
 }
 
-/* Input Fields */
-.register-card input {
+/* Form input styling */
+input {
     width: 100%;
     padding: 12px;
     margin: 10px 0;
-    border: none;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #555;
-    color: #fff;
-    box-sizing: border-box; /* Ensures padding doesn't break width */
+    box-sizing: border-box; /* Keeps padding inside the defined width */
 }
 
-/* Button Styling */
-.register-card button {
+/* Button styling */
+button {
     width: 100%;
     padding: 12px;
-    margin-top: 15px;
-    background-color: #333;
+    background: #4a4a4a;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
+    margin-top: 10px;
 }
 
-.register-card button:hover {
-    background-color: #000;
+button:hover {
+    background-color: #333;
 }
