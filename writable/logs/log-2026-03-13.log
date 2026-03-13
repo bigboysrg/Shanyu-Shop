@@ -179,3 +179,20 @@ in APPPATH\Controllers\Catalog.php on line 7.
  8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
  9 SYSTEMPATH\rewrite.php(44): require_once('D:\\XAMPP\\htdocs\\Shanyu\\public\\index.php')
 DEBUG - 2026-03-13 13:30:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-03-13 13:55:10 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "partials/dashboard_sidebar.php"
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(226): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('partials/dashboard_sidebar.php')
+ 2 SYSTEMPATH\Common.php(1250): CodeIgniter\View\View->render('partials/dashboard_sidebar', [], true)
+ 3 APPPATH\Views\dashboard.php(473): view('partials/dashboard_sidebar', [...])
+ 4 SYSTEMPATH\View\View.php(238): include('D:\\XAMPP\\htdocs\\Shanyu\\app\\Views\\dashboard.php')
+ 5 SYSTEMPATH\View\View.php(241): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1250): CodeIgniter\View\View->render('dashboard', [], true)
+ 7 APPPATH\Controllers\UserDashboard.php(9): view('dashboard')
+ 8 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\UserDashboard->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UserDashboard))
+10 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('D:\\XAMPP\\htdocs\\Shanyu\\public\\index.php')

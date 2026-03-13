@@ -1,0 +1,62 @@
+/* public/css/dashboard.css */
+
+:root {
+    --primary-gray: #a8a8a8;
+    --dark-gray: #4a4a4a;
+    --medium-gray: #7a7a7a;
+    --light-gray: #e8e8e8;
+    --bg-gray: #f0f0f0;
+    --white: #ffffff;
+    --text-dark: #333333;
+    --border-color: #cccccc;
+    --success-gray: #6b9b6e;
+    --danger-gray: #9b6b6b;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
+    --transition-speed: 0.3s;
+}
+
+body {
+    background-color: var(--bg-gray);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+}
+
+/* Layout Components */
+.dashboard-container { display: flex; min-height: 100vh; }
+.main-content { flex: 1; padding: 40px; }
+
+/* Dashboard Card */
+.content-section {
+    background-color: var(--light-gray);
+    padding: 30px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Form Styling */
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    background: var(--white);
+}
+
+/* Button Styling */
+.btn-save, .btn-edit, .btn-delete {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--primary-gray);
+}
+
+.btn-delete:hover { background-color: var(--danger-gray); color: var(--white); }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .dashboard-container { flex-direction: column; }
+    .sidebar-nav { width: 100%; }
+}

@@ -9,3 +9,6 @@ $routes->get('/', 'Home::index');
 $routes->get('catalog', 'Catalog::index');
 $routes->get('register', 'Register::index');
 $routes->post('register/store', 'Register::store');
+$routes->get('dashboard', 'UserDashboard::index');
+$routes->post('dashboard/update', 'UserDashboard::updateProfile');
+$routes->get('dashboard/delete', 'UserDashboard::deleteAccount');
