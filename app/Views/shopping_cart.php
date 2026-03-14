@@ -1,236 +1,215 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Cart - Shàn yú</title>
-    <!-- Google Fonts for that elegant look -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <style>
-        :root {
-            --maroon: #800000;
-            --cream: #F5E6BE;
-            --dark-green: #006400;
-            --text-dark: #2c2c2c;
-        }
+<!-- 
+    Bulletproof Shopping Cart View 
+    Fixes: Overlapping elements, Transparency, and Layout Collapsing
+-->
 
-        body { 
-            background-color: var(--maroon); 
-            font-family: 'Poppins', sans-serif;
-            color: var(--text-dark);
-        }
+<style>
+    /* 1. Reset and Page Background */
+    .cart-page-outer {
+        background-color: #800000; /* Deep Maroon */
+        min-height: 100vh;
+        padding: 40px 20px;
+        font-family: 'Poppins', sans-serif;
+        color: #2c2c2c;
+    }
 
-        /* Top Navbar Aesthetic */
-        .navbar-custom {
-            background-color: var(--cream);
-            padding: 15px 40px;
-            border-bottom: 3px solid var(--maroon);
-        }
-        .logo-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--maroon);
-            text-decoration: none;
-        }
-        .nav-links-aesthetic {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-weight: bold;
-            color: var(--maroon);
-        }
+    /* 2. Layout Wrapper (Stops overlapping) */
+    .cart-flex-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+        align-items: flex-start;
+    }
 
-        /* Main Cart Container */
-        .cart-panel {
-            background-color: var(--cream);
-            border-radius: 8px;
-            padding: 30px;
-            min-height: 500px;
-        }
+    /* 3. Left Side: Items (70% width) */
+    .cart-items-column {
+        flex: 2;
+        min-width: 350px;
+    }
 
-        .shop-header {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            font-style: italic;
-            color: var(--maroon);
-            border-bottom: 2px solid var(--maroon);
-            margin-bottom: 25px;
-            padding-bottom: 10px;
-        }
+    /* 4. Right Side: Summary (30% width) */
+    .cart-summary-column {
+        flex: 1;
+        min-width: 320px;
+    }
 
-        /* Product Card Styling */
-        .product-card {
-            background: rgba(255, 255, 255, 0.3);
-            border: 1px solid var(--maroon);
-            border-radius: 5px;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        .img-box {
-            width: 180px;
-            height: 120px;
-            background: #fff;
-            border: 1px solid var(--maroon);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: var(--maroon);
-        }
-        .product-price {
-            color: var(--dark-green);
-            font-weight: bold;
-            font-size: 22px;
-        }
+    /* 5. Solid Cream Boxes (Added !important to stop transparency) */
+    .solid-cream-box {
+        background-color: #F5E6BE !important; 
+        border: 2px solid #5a0000;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
 
-        /* Sidebar Summary Styling */
-        .sidebar-cream {
-            background-color: var(--cream);
-            border-radius: 8px;
-            padding: 25px;
-            height: fit-content;
-        }
-        .summary-label {
-            font-family: 'Playfair Display', serif;
-            font-weight: bold;
-            font-size: 18px;
-            color: var(--maroon);
-            margin-top: 15px;
-        }
-        .aesthetic-input {
-            background: #fff;
-            border: 1px solid var(--maroon);
-            padding: 8px;
-            width: 100%;
-            border-radius: 4px;
-        }
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 10px 0;
-        }
-        .value-box {
-            background: white;
-            border: 1px solid var(--maroon);
-            padding: 2px 10px;
-            min-width: 90px;
-            text-align: right;
-            font-weight: bold;
-        }
+    /* 6. Product Card Styling */
+    .cart-item-card {
+        background: rgba(255, 255, 255, 0.6);
+        border: 1px solid #800000;
+        border-radius: 8px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
 
-        /* Buttons */
-        .place-order-btn {
-            background-color: var(--maroon);
-            color: var(--cream);
-            width: 100%;
-            border: none;
-            padding: 12px;
-            font-weight: bold;
-            font-size: 18px;
-            text-transform: uppercase;
-            margin-top: 20px;
-            transition: 0.3s;
-        }
-        .place-order-btn:hover {
-            background-color: #5a0000;
-            color: white;
-        }
+    .cart-item-img {
+        width: 100px;
+        height: 80px;
+        background: #fff;
+        border: 1px solid #800000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 20px;
+        overflow: hidden;
+        flex-shrink: 0;
+    }
 
-        .back-btn {
-            color: var(--cream);
-            text-decoration: none;
-            font-size: 20px;
-            margin-bottom: 10px;
-            display: inline-block;
-        }
-    </style>
-</head>
-<body>
+    .cart-item-img img {
+        max-width: 90%;
+        max-height: 90%;
+    }
 
-<nav class="navbar-custom d-flex justify-content-between align-items-center">
-    <div>
-        <span class="bg-danger text-white p-2 rounded-circle me-2">Logo</span>
-        <a href="#" class="logo-text">Shàn yú</a>
-    </div>
-    <div class="nav-links-aesthetic d-none d-md-block">
-        <span class="mx-3">Home</span>
-        <span class="mx-3">About Us</span>
-        <span class="mx-3">Contact</span>
-    </div>
-</nav>
+    /* 7. Summary Details */
+    .summary-title {
+        font-family: 'Playfair Display', serif;
+        font-weight: bold;
+        color: #800000;
+        border-bottom: 2px solid #800000;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
 
-<div class="container mt-4 mb-5">
-    <a href="/store" class="back-btn">← Back to Store</a>
-    
-    <div class="row g-4">
-        <!-- LEFT PANEL: CART ITEMS -->
-        <div class="col-lg-8">
-            <div class="cart-panel shadow">
-                <div class="shop-header">Your Shopping Cart</div>
-                
-                <!-- Example Item -->
-                <div class="product-card">
-                    <div class="img-box me-4">Product Image</div>
-                    <div class="flex-grow-1">
-                        <h4 class="mb-1 fw-bold">Zero IEM Headphones - Blue</h4>
-                        <p class="text-muted small">Premium High-Fidelity Audio</p>
-                        <div class="product-price">$89.99</div>
+    .detail-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        font-weight: 500;
+    }
+
+    .price-box {
+        background: white;
+        border: 1px solid #800000;
+        padding: 5px 15px;
+        font-weight: bold;
+        min-width: 100px;
+        text-align: right;
+    }
+
+    .btn-place-order {
+        background-color: #800000;
+        color: #F5E6BE;
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-top: 20px;
+        cursor: pointer;
+    }
+
+    .btn-place-order:hover {
+        background-color: #5a0000;
+    }
+
+    .back-store-link {
+        color: white;
+        text-decoration: none;
+        display: inline-block;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+</style>
+
+<div class="cart-page-outer">
+    <div class="container-fluid">
+        <a href="<?= site_url('products') ?>" class="back-store-link">← Back to Store</a>
+
+        <div class="cart-flex-container">
+            
+            <!-- LEFT COLUMN: ITEMS -->
+            <div class="cart-items-column">
+                <div class="solid-cream-box">
+                    <h2 class="summary-title" style="font-size: 32px; font-style: italic;">Your Shopping Cart</h2>
+                    
+                    <?php 
+                    $subtotal = 0; 
+                    $total_qty = 0; 
+                    ?>
+
+                    <?php if (!empty($cart_items)): ?>
+                        <?php foreach ($cart_items as $item): 
+                            $line_total = $item['price'] * $item['qty'];
+                            $subtotal += $line_total;
+                            $total_qty += $item['qty'];
+                        ?>
+                            <div class="cart-item-card">
+                                <div class="cart-item-img">
+                                    <img src="<?= base_url('images/' . $item['img']) ?>" alt="Product">
+                                </div>
+                                <div style="flex-grow: 1;">
+                                    <h5 class="fw-bold mb-1"><?= $item['name'] ?></h5>
+                                    <p class="mb-0 text-muted">Qty: <?= $item['qty'] ?></p>
+                                    <div style="color: #006400; font-weight: bold; font-size: 1.2rem;">$<?= number_format($item['price'], 2) ?></div>
+                                </div>
+                                <a href="<?= site_url('cart/remove/'.$item['id']) ?>" class="btn btn-sm btn-outline-danger">Remove</a>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <div style="text-align: center; padding: 60px 0;">
+                            <p style="font-style: italic; color: #666;">Your cart is empty. Add products to begin checkout.</p>
+                            <a href="<?= site_url('products') ?>" class="btn btn-dark mt-3">Go to Shop</a>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: SUMMARY -->
+            <div class="cart-summary-column">
+                <div class="solid-cream-box">
+                    <h4 class="summary-title">Order Summary</h4>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label class="fw-bold small d-block mb-1">Shipping Address</label>
+                        <textarea class="form-control" rows="2" style="border: 1px solid #800000; border-radius: 0;" placeholder="Enter complete address..."></textarea>
                     </div>
-                    <button class="btn btn-sm btn-outline-danger">Remove</button>
-                </div>
 
-                <!-- Empty State Message -->
-                <p class="mt-4 italic text-muted">Your cart is empty. Add products to begin checkout.</p>
+                    <div class="detail-row">
+                        <span>Items (<?= $total_qty ?>):</span>
+                        <div class="price-box">$<?= number_format($subtotal, 2) ?></div>
+                    </div>
+                    
+                    <div class="detail-row">
+                        <span>Subtotal:</span>
+                        <div class="price-box">$<?= number_format($subtotal, 2) ?></div>
+                    </div>
+
+                    <?php $shipping = ($subtotal > 0) ? 50.00 : 0; ?>
+                    <div class="detail-row" style="border-bottom: 2px solid #800000; padding-bottom: 15px;">
+                        <span>Shipping Fee:</span>
+                        <div class="price-box">$<?= number_format($shipping, 2) ?></div>
+                    </div>
+
+                    <div class="detail-row mt-3">
+                        <span class="h5 fw-bold" style="color: #800000;">Grand Total:</span>
+                        <div class="price-box h5 mb-0" style="background: #fff;">$<?= number_format($subtotal + $shipping, 2) ?></div>
+                    </div>
+
+                    <div class="mt-4">
+                        <label class="fw-bold small d-block mb-1">Payment Options</label>
+                        <p class="small">Debit | Credit | Cash | GCash</p>
+                    </div>
+
+                    <button class="btn-place-order" <?= ($total_qty == 0) ? 'disabled style="opacity:0.5;"' : '' ?>>
+                        Place Order
+                    </button>
+                </div>
             </div>
-        </div>
 
-        <!-- RIGHT PANEL: SUMMARY -->
-        <div class="col-lg-4">
-            <div class="sidebar-cream shadow">
-                <div class="summary-label">Address</div>
-                <textarea class="aesthetic-input" rows="2" placeholder="Enter complete shipping address..."></textarea>
-
-                <div class="summary-row mt-3">
-                    <span>Items (1):</span>
-                    <div class="value-box">$89.99</div>
-                </div>
-                <div class="summary-row">
-                    <span>Total:</span>
-                    <div class="value-box">$89.99</div>
-                </div>
-                <div class="summary-row border-bottom border-dark pb-2">
-                    <span>Shipping Fee:</span>
-                    <div class="value-box">$50.00</div>
-                </div>
-
-                <div class="summary-label">Payment</div>
-                <div class="small mb-3">
-                    <span class="me-2">Debit</span>| <span class="mx-2">Credit</span>| <span class="mx-2">Cash</span>| <span class="ms-2">Gcash</span>
-                </div>
-
-                <div class="summary-label">Delivery Options:</div>
-                <div class="small mb-3">
-                    <u class="fw-bold">Standard</u> <span class="ms-3">Priority</span>
-                </div>
-
-                <div class="summary-label">Notes to seller:</div>
-                <textarea class="aesthetic-input" placeholder="Special instructions..."></textarea>
-
-                <div class="summary-row mt-4">
-                    <span class="h5 fw-bold text-maroon">Subtotal:</span>
-                    <div class="value-box h5 mb-0">$139.99</div>
-                </div>
-
-                <button class="place-order-btn">Place Order</button>
-            </div>
         </div>
     </div>
 </div>
-
-</body>
-</html>

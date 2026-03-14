@@ -7,23 +7,55 @@ class Cart extends BaseController
     public function index()
     {
         $session = session();
-        // Mock data to demonstrate the layout; replace with $session->get('cart') logic later
-        $data['cart_items'] = [
-            [
-                'name' => 'Product Name',
-                'overview' => 'Product Overview',
-                'price' => 0.00,
-                'qty' => 1
-            ]
+        $cart = $session->get('cart') ?? [];
+
+        // We prepare data for both the Header and the Shopping Cart view
+        $data = [
+            'cart_items' => $cart,
+            'title'      => 'Your Cart | Shàn yú',
+            'brandName'  => 'Shàn yú'
         ];
 
-        $data['shipping_fee'] = 50.00;
-        $data['items_total'] = 0.00;
+        echo view('templates/header', $data);
+        echo view('shopping_cart', $data);
+        echo view('templates/footer');
+    }
 
-        foreach ($data['cart_items'] as $item) {
-            $data['items_total'] += $item['price'] * $item['qty'];
+    public function add()
+    {
+        $session = session();
+        
+        $productId = $this->request->getPost('product_id');
+        $newItem = [
+            'id'    => $productId,
+            'name'  => $this->request->getPost('product_name'),
+            'price' => $this->request->getPost('product_price'),
+            'qty'   => (int)$this->request->getPost('quantity'),
+            'img'   => $this->request->getPost('product_img'),
+        ];
+
+        $cart = $session->get('cart') ?? [];
+
+        if (isset($cart[$productId])) {
+            $cart[$productId]['qty'] += $newItem['qty'];
+        } else {
+            $cart[$productId] = $newItem;
         }
 
-        return view('shopping_cart', $data);
+        $session->set('cart', $cart);
+        return redirect()->to(site_url('cart'));
+    }
+
+    public function remove($id)
+    {
+        $session = session();
+        $cart = $session->get('cart');
+        
+        if (isset($cart[$id])) {
+            unset($cart[$id]);
+            $session->set('cart', $cart);
+        }
+        
+        return redirect()->to(site_url('cart'));
     }
 }

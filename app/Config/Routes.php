@@ -14,6 +14,8 @@ $routes->post('dashboard/update', 'UserDashboard::updateProfile');
 $routes->get('dashboard/delete', 'UserDashboard::deleteAccount');
 $routes->get('home', 'Home::index');
 $routes->get('cart', 'Cart::index');
+$routes->post('cart/add', 'Cart::add');
+$routes->get('cart/remove/(:any)', 'Cart::remove/$1');
 $routes->get('products', 'Products::index');
 $routes->get('products/details/(:num)', 'Products::details/$1');
 $routes->get('login', 'Login::index');
