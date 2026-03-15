@@ -2,204 +2,284 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $product['name'] ?> | Shàn yú</title>
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --maroon: #800000;
             --cream: #F5E6BE;
             --green: #006400;
-            --dark-header: #003d21; /* Match the dark green in your screenshot */
+            --dark-bg: #404040;
         }
 
         body { 
             background-color: var(--maroon); 
             font-family: 'Poppins', sans-serif;
             margin: 0;
-            overflow-x: hidden;
+            padding-bottom: 50px;
         }
 
-        /* Fixed Sidebar Fix */
-        .sidebar {
+        /* Top Navbar */
+        .navbar-custom {
+            background-color: #003311;
+            padding: 15px 60px;
+            color: white;
+        }
+        .nav-link-custom {
+            color: #ccc;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 0.95rem;
+        }
+        .nav-link-custom:hover { color: white; }
+
+        /* Main Container - No Sidebar */
+        .main-card {
             background-color: var(--cream);
-            min-height: 100vh;
-            border-right: 2px solid var(--maroon);
-            padding: 20px;
+            margin: 40px auto;
+            max-width: 1100px;
+            border-radius: 8px;
+            padding: 50px;
+            border: 1px solid rgba(128, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        .filter-label {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-weight: bold;
-            color: var(--maroon);
-            border-bottom: 1px solid var(--maroon);
-            margin-top: 20px;
-            display: block;
-        }
-
-        .filter-item {
-            display: block;
+        .back-to-shop {
             color: var(--maroon);
             text-decoration: none;
-            font-size: 0.9rem;
-            margin-top: 5px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            display: inline-block;
         }
 
-        /* Main Content Fix */
-        .main-content {
-            background-color: var(--cream);
-            margin: 20px;
-            border-radius: 8px;
-            padding: 40px;
-            min-height: 90vh;
-            border: 1px solid var(--maroon);
-        }
-
-        /* Product Box Fix - Stops the stretching */
-        .product-img-box {
+        /* Image Box */
+        .img-container {
             background: #fff;
-            border: 1px solid var(--maroon);
+            border: 1.5px solid var(--maroon);
             width: 100%;
-            height: 400px; /* Fixed height to prevent stretching */
+            height: 480px;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+            padding: 20px;
         }
-
-        .product-img-box img {
-            max-width: 90%;
-            max-height: 90%;
+        .img-container img {
+            max-width: 100%;
+            max-height: 100%;
             object-fit: contain;
         }
 
-        /* Details Text */
-        .product-title {
+        /* Typography */
+        .prod-title {
             font-family: 'Playfair Display', serif;
-            font-weight: bold;
             color: var(--maroon);
-            font-size: 2.2rem;
+            font-size: 3rem;
+            line-height: 1;
+            margin-bottom: 5px;
         }
-
-        .price-text {
+        .prod-subtitle {
+            color: #777;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+        .prod-price {
             color: var(--green);
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: bold;
-            margin: 15px 0;
+            margin-bottom: 30px;
         }
 
-        /* Purchase Panel */
-        .purchase-panel {
-            padding-left: 20px;
+        /* Form Controls */
+        .qty-label { font-size: 0.9rem; font-weight: bold; width: 80px; }
+        .qty-btn {
+            border: 1px solid #444;
+            background: transparent;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .qty-input {
+            width: 60px;
+            height: 32px;
+            text-align: center;
+            border: 1.5px solid var(--maroon);
+            margin: 0 10px;
+            font-weight: bold;
         }
 
-        .btn-buy {
-            background-color: #333;
+        /* Buttons Row */
+        .action-row { display: flex; gap: 10px; margin-top: 25px; }
+        
+        .btn-add-cart {
+            background-color: #000;
+            color: white;
+            border: none;
+            flex-grow: 1;
+            padding: 12px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-wishlist {
+            background: transparent;
+            border: 1px solid #444;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .btn-order-now {
+            background-color: #3d3d3d;
             color: white;
             width: 100%;
-            padding: 12px;
             border: none;
+            padding: 14px;
             font-weight: bold;
             text-transform: uppercase;
             margin-top: 15px;
         }
-        
-        .btn-cart {
-            background-color: #000;
+
+        /* Badge Footer */
+        .shop-badge {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+        }
+        .shop-icon {
+            background-color: var(--maroon);
             color: white;
-            border: none;
-            padding: 10px 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
         }
 
-        .qty-input {
-            width: 50px;
-            text-align: center;
-            border: 1px solid var(--maroon);
+        /* Tabs */
+        .tabs-section { margin-top: 80px; }
+        .tab-btn {
+            background: transparent;
+            border: none;
+            font-weight: bold;
+            padding: 10px 0;
+            margin-right: 30px;
+            color: #777;
+            border-bottom: 3px solid transparent;
+        }
+        .tab-btn.active {
+            color: #000;
+            border-bottom: 3px solid #000;
+        }
+        .tab-content-box {
+            background: white;
+            padding: 25px;
+            border: 1px solid #eee;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
-<div class="container-fluid p-0">
-    <div class="row g-0">
-        <!-- Sidebar Column -->
-        <div class="col-md-2 d-none d-md-block">
-            <div class="sidebar">
-                <div class="mb-4"><strong>☰</strong></div>
-                <span class="filter-label">Filter by Price</span>
-                <a href="#" class="filter-item">All</a>
-                <a href="#" class="filter-item">Under 5$</a>
-                <a href="#" class="filter-item">10$ - 20$</a>
-                
-                <span class="filter-label">Filter by Rating</span>
-                <a href="#" class="filter-item">5 Stars ★★★★★</a>
-                <a href="#" class="filter-item">4 Stars ★★★★</a>
+<nav class="navbar-custom d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center">
+        <img src="<?= base_url('images/logo.png') ?>" height="35" class="me-2"> <!-- Update with your logo path -->
+        <span class="fw-bold italic">Shàn yú</span>
+    </div>
+    <div class="d-flex">
+        <a href="<?= site_url('/') ?>" class="nav-link-custom">Home</a>
+        <a href="<?= site_url('products') ?>" class="nav-link-custom">Products</a>
+        <a href="<?= site_url('cart') ?>" class="nav-link-custom">Cart</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="main-card">
+        <a href="<?= site_url('products') ?>" class="back-to-shop">← BACK TO SHOP</a>
+        
+        <div class="row g-5">
+            <!-- Left Side: Image -->
+            <div class="col-lg-6">
+                <div class="img-container">
+                    <img src="<?= base_url('images/' . $product['img']) ?>" alt="<?= $product['name'] ?>">
+                </div>
+            </div>
+
+            <!-- Right Side: Buying Details -->
+            <div class="col-lg-6">
+                <form action="<?= site_url('cart/add') ?>" method="post">
+                    <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
+                    
+                    <h1 class="prod-title"><?= $product['name'] ?></h1>
+                    <div class="prod-subtitle">Entry-level King</div> <!-- Static mock text -->
+                    
+                    <div class="prod-price">$<?= number_format($product['price'], 2) ?></div>
+
+                    <div class="d-flex align-items-center mb-4">
+                        <span class="qty-label">Quantity</span>
+                        <button type="button" class="qty-btn" onclick="adjustQty(-1)">-</button>
+                        <input type="number" name="quantity" id="qty" class="qty-input" value="1" min="1" readonly>
+                        <button type="button" class="qty-btn" onclick="adjustQty(1)">+</button>
+                    </div>
+
+                    <div class="small mb-2"><strong>Shipping:</strong> Standard 3-5 Days</div>
+                    <div class="small mb-4"><strong>Payment:</strong> GCash, COD, Credit Card</div>
+
+                    <div class="action-row">
+                        <button type="submit" class="btn-add-cart">
+                            <span style="font-size:1.2rem;">🛒</span> Add to Cart
+                        </button>
+                        <button type="button" class="btn-wishlist">♡</button>
+                    </div>
+                    
+                    <button type="submit" class="btn-order-now">Place Order Now</button>
+                </form>
+
+                <div class="shop-badge">
+                    <div class="shop-icon">S</div>
+                    <span class="fw-bold">Shàn yú Official Shop</span>
+                </div>
             </div>
         </div>
 
-        <!-- Content Column -->
-        <div class="col-md-10">
-            <div class="main-content shadow-lg">
-                <a href="<?= site_url('products') ?>" class="text-maroon text-decoration-none fw-bold mb-4 d-inline-block">← BACK TO SHOP</a>
-                
-                <div class="row">
-                    <!-- Product Image Section -->
-                    <div class="col-lg-6">
-                        <div class="product-img-box">
-                            <!-- Image path fix: assumes images are in public/assets/images/ -->
-                            <img src="<?= base_url('images/' . $product['img']) ?>" 
-                            alt="<?= $product['name'] ?>">
-                        </div>
-                    </div>
-
-                    <!-- Purchase Section -->
-                    <div class="col-lg-6 purchase-panel mt-4 mt-lg-0">
-                        <h1 class="product-title"><?= $product['name'] ?></h1>
-                        <p class="text-muted italic"><?= $product['overview'] ?></p>
-                        
-                        <div class="price-text">$<?= number_format($product['price'], 2) ?></div>
-
-                        <div class="d-flex align-items-center mb-4">
-                            <span class="me-3 fw-bold small">Quantity</span>
-                            <button class="btn btn-sm btn-outline-dark" onclick="qty.value = Math.max(1, parseInt(qty.value)-1)">-</button>
-                            <input type="text" id="qty" class="qty-input mx-2" value="1" readonly>
-                            <button class="btn btn-sm btn-outline-dark" onclick="qty.value = parseInt(qty.value)+1">+</button>
-                        </div>
-
-                        <div class="small mb-2"><strong>Shipping:</strong> Standard 3-5 Days</div>
-                        <div class="small mb-4"><strong>Payment:</strong> GCash, COD, Credit Card</div>
-
-                        <div class="d-flex gap-2">
-                            <button class="btn-cart">🛒 Add to Cart</button>
-                            <button class="btn btn-outline-dark">♡</button>
-                        </div>
-                        <button class="btn-buy">Place Order Now</button>
-
-                        <div class="mt-5 d-flex align-items-center border-top pt-3">
-                            <div style="width:40px; height:40px; background:#ccc; border-radius:50%; margin-right:10px;"></div>
-                            <span class="fw-bold">Shàn yú Official Shop</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tabs Section -->
-                <div class="mt-5 pt-5">
-                    <ul class="nav nav-underline border-bottom mb-3">
-                        <li class="nav-item"><a class="nav-link active text-maroon fw-bold" href="#">About Item</a></li>
-                        <li class="nav-item"><a class="nav-link text-muted" href="#">Reviews</a></li>
-                    </ul>
-                    <div class="p-3 bg-white border">
-                        <?= $product['desc'] ?>
-                    </div>
-                </div>
+        <!-- Bottom: About Section -->
+        <div class="tabs-section">
+            <div class="d-flex border-bottom">
+                <button class="tab-btn active">About Item</button>
+                <button class="tab-btn">Reviews</button>
+            </div>
+            <div class="tab-content-box">
+                <p class="mb-0 text-muted">
+                    <?= $product['desc'] ?? "The successor to the CHU, featuring a replaceable cable and refined tuning." ?>
+                </p>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    function adjustQty(amount) {
+        const qtyInput = document.getElementById('qty');
+        let val = parseInt(qtyInput.value) + amount;
+        if (val >= 1) qtyInput.value = val;
+    }
+</script>
 
 </body>
 </html>
