@@ -17,7 +17,7 @@
         </div>
         <nav>
             <a href="<?= site_url('home') ?>">Home</a> 
-            <a href="#">About Us</a>
-            <a href="#">Contact</a>
+            <a href="<?= site_url('cart') ?>">Cart</a>
+            <a href="<?= site_url('products') ?>">Products</a>
         </nav>
     </header>

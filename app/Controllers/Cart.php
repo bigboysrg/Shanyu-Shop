@@ -2,20 +2,10 @@
 
 namespace App\Controllers;
 
+use App\Models\ProductModel;
+
 class Cart extends BaseController
 {
-    // Updated to .png - Ensure these match your public/images folder EXACTLY
-    private $mock_products = [
-        1 => ['id' => 1, 'name' => 'Zero IEM Headphones - Blue', 'price' => 89.99, 'img' => 'zeroblue.png'],
-        2 => ['id' => 2, 'name' => 'Moondrop CHU 2', 'price' => 56.99, 'img' => 'chu2.png'],
-        3 => ['id' => 3, 'name' => 'Vibes 202MC', 'price' => 43.99, 'img' => 'vibes.png'],
-        4 => ['id' => 4, 'name' => 'BGVP Wukong', 'price' => 58990.99, 'img' => 'wukong.png'],
-        5 => ['id' => 5, 'name' => 'Moondrop ARIA 2 RED', 'price' => 100.99, 'img' => 'aria.png'],
-        6 => ['id' => 6, 'name' => 'Tangzu Waner S.G. Jade', 'price' => 45.99, 'img' => 'waner.png'],
-        7 => ['id' => 7, 'name' => 'HiFiGo DUNU DN242', 'price' => 150.99, 'img' => 'dunu.png'],
-        8 => ['id' => 8, 'name' => 'Tipsy M1 IEM', 'price' => 30.99, 'img' => 'tipsy.png'],
-    ];
-
     public function index()
     {
         $session = session();
@@ -28,11 +18,13 @@ class Cart extends BaseController
             $total_qty += $item['quantity'];
         }
 
+        $shipping_fee = ($total_qty > 0) ? 50.00 : 0.00;
+
         $data = [
             'cart_items'   => $cart,
             'items_total'  => $items_total,
-            'shipping_fee' => ($total_qty > 0) ? 50.00 : 0.00,
-            'grand_total'  => $items_total + (($total_qty > 0) ? 50.00 : 0.00),
+            'shipping_fee' => $shipping_fee,
+            'grand_total'  => $items_total + $shipping_fee,
             'total_qty'    => $total_qty
         ];
 
@@ -41,15 +33,18 @@ class Cart extends BaseController
 
     public function add()
     {
-        $session = session();
+        $productModel = new ProductModel();
         $productId = $this->request->getPost('product_id');
         $quantity  = (int)$this->request->getPost('quantity');
 
-        if (!isset($this->mock_products[$productId])) {
-            return redirect()->back();
+        // Fetch product from Database
+        $product = $productModel->find($productId);
+
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not found.');
         }
 
-        $product = $this->mock_products[$productId];
+        $session = session();
         $cart = $session->get('cart') ?? [];
 
         if (isset($cart[$productId])) {
@@ -59,7 +54,7 @@ class Cart extends BaseController
                 'id'       => $product['id'],
                 'name'     => $product['name'],
                 'price'    => $product['price'],
-                'img'      => $product['img'], // This now saves the .png filename
+                'img'      => $product['img'],
                 'quantity' => $quantity
             ];
         }
@@ -72,10 +67,8 @@ class Cart extends BaseController
     {
         $session = session();
         $cart = $session->get('cart') ?? [];
-        if (isset($cart[$id])) {
-            unset($cart[$id]);
-            $session->set('cart', $cart);
-        }
+        if (isset($cart[$id])) unset($cart[$id]);
+        $session->set('cart', $cart);
         return redirect()->to(site_url('cart'));
     }
 }

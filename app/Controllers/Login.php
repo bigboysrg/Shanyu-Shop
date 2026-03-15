@@ -2,19 +2,39 @@
 
 namespace App\Controllers;
 
+use App\Models\UserModel;
+
 class Login extends BaseController
 {
-    public function index()
-    {
-        helper('url');
-        $data = [
-            'brandName' => "Shàn yú",
-            'title' => "Login - Shàn yú"
-        ];
+    public function index() {
+        return view('login_view');
+    }
 
-        // Reusing your existing header/footer
-        return view('templates/header', $data)
-             . view('login_view')
-             . view('templates/footer');
+    public function authenticate() {
+        $userModel = new UserModel();
+        $email = $this->request->getPost('email');
+        $password = $this->request->getPost('password');
+
+        $user = $userModel->where('email', $email)->first();
+
+        if ($user) {
+            if (password_verify($password, $user['password'])) {
+                session()->set([
+                    'user_id'    => $user['id'],
+                    'username'   => $user['username'],
+                    'isLoggedIn' => true
+                ]);
+                return redirect()->to(site_url('products'));
+            } else {
+                return redirect()->back()->with('error', 'Incorrect password. Please try again.');
+            }
+        } else {
+            return redirect()->back()->with('error', 'No account found with that email.');
+        }
+    }
+
+    public function logout() {
+        session()->destroy();
+        return redirect()->to(site_url('/'));
     }
 }
