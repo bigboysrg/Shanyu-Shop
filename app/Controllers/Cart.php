@@ -37,7 +37,7 @@ class Cart extends BaseController
         $productId = $this->request->getPost('product_id');
         $quantity  = (int)$this->request->getPost('quantity');
 
-        // Fetch product from Database
+       
         $product = $productModel->find($productId);
 
         if (!$product) {

@@ -10,7 +10,7 @@ class Products extends BaseController
     {
         $model = new ProductModel();
         
-        // Start building the query
+        
         $builder = $model;
 
         // 1. Handle Search

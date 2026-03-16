@@ -1,4 +1,4 @@
-/* --- Root Variables for Colors --- */
+
 :root {
     --dark-green: #003d15;
     --mid-green: #005a1e;
@@ -8,7 +8,7 @@
     --gold: #ffcc00;
 }
 
-/* --- Global Styles --- */
+
 body {
     margin: 0;
     padding: 0;
@@ -23,7 +23,7 @@ h1, .shop-text, .logo-text, .nav-links a, .btn-signin, .price, .product-tag, .ch
     font-family: 'Pacifico', cursive;
 }
 
-/* --- Header --- */
+
 header {
     background-color: var(--dark-green);
     color: white;
@@ -59,7 +59,7 @@ nav a {
     font-size: 1.2rem;
 }
 
-/* --- Hero Section --- */
+
 .hero {
     display: flex;
     padding: 60px 80px;
@@ -135,7 +135,7 @@ nav a {
     transform: scale(1.05);
 }
 
-/* --- Right Side Assets --- */
+
 .hero-right {
     flex: 1;
     position: relative;
@@ -149,7 +149,7 @@ nav a {
     height: 350px;
     border-radius: 25px;
     position: absolute;
-    /* Change these values to pull it closer to the model */
+    
     left: 150px; 
     top: 50px;
     padding: 15px;
@@ -157,7 +157,7 @@ nav a {
     flex-direction: column;
     align-items: center;
     box-shadow: 15px 15px 30px rgba(0,0,0,0.2);
-    z-index: 5; /* Higher than the model image */
+    z-index: 5; 
 }
 
 .product-tag {
@@ -191,21 +191,21 @@ nav a {
     box-shadow: 20px 20px 40px rgba(0,0,0,0.2);
 }
 
-/* --- Review Bubble --- */
+
 .review-bubble {
     background: var(--deep-red);
     color: white;
     padding: 12px 25px;
     border-radius: 50px;
     position: absolute;
-    /* Adjust these to match the screenshot */
+   
     bottom: -10px;
     left: 50px; 
     width: 380px;
     display: flex;
     align-items: center;
     gap: 15px;
-    z-index: 6; /* Top layer */
+    z-index: 6; 
     box-shadow: 10px 10px 25px rgba(0,0,0,0.3);
 }
 
@@ -217,7 +217,7 @@ nav a {
     object-fit: cover;
 }
 
-/* --- Footer/Bottom Bar --- */
+
 .bottom-bar {
     background: var(--dark-green);
     color: white;
@@ -236,7 +236,7 @@ nav a {
     padding: 25px;
     width: 280px;
     position: absolute;
-    top: -120px; /* This makes it overlap the tan and green sections */
+    top: -120px; 
     left: 80px;
     box-shadow: 0 15px 30px rgba(0,0,0,0.3);
 }
@@ -285,7 +285,7 @@ nav a {
     display: flex;
     align-items: center;
     gap: 15px;
-    margin-left: 350px; /* Offset to clear the checkout box */
+    margin-left: 350px; 
 }
 
 .stats h2 {
