@@ -24,7 +24,7 @@ class Login extends BaseController
                     'username'   => $user['username'],
                     'isLoggedIn' => true
                 ]);
-                return redirect()->to(site_url('products'));
+                return redirect()->to(site_url('home'));
             } else {
                 return redirect()->back()->with('error', 'Incorrect password. Please try again.');
             }
